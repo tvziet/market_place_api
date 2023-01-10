@@ -16,3 +16,7 @@
 one:
   email: one@one.example
   password_digest: <%= BCrypt::Password.create("p@ssw0rd") %>
+
+two:
+  email: two@two.example
+  password_digest: <%= BCrypt::Password.create("p@ssw0rd") %>
