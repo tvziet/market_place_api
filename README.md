@@ -14,3 +14,10 @@
 - `Comment`
 ### Associations
 The `user` will be able to place many `orders`, upload multiple `products` which can have many `images` or `comments` from another `users`.
+
+## Notes
+### `fast_jsonapi` gem
+When we use this gem, we generate serializer, it will generate the folder `serializers`. We neet to load this folder in `application.rb` file:
+```ruby
+config.eager_load_paths << Rails.root.join("serializers")
+```

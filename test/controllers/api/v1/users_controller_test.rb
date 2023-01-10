@@ -12,7 +12,7 @@ class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
 
     # Test to ensure response contains the correct email
     json_response = JSON.parse(self.response.body)
-    assert_equal @user.email, json_response["email"]
+    assert_equal @user.email, json_response["data"]["attributes"]["email"]
   end
 
   test "should not show the user with the not exists ID" do

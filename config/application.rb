@@ -39,5 +39,8 @@ module MarketPlaceApi
 
     # Load all files from lib folder
     config.eager_load_paths << Rails.root.join("lib")
+
+    # Load all files from serializers folder
+    config.eager_load_paths << Rails.root.join("serializers")
   end
 end
