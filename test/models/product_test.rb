@@ -3,9 +3,9 @@
 # Table name: products
 #
 #  id         :bigint           not null, primary key
-#  price      :decimal(, )
-#  published  :boolean
-#  title      :string
+#  price      :decimal(, )      not null
+#  published  :boolean          default(FALSE)
+#  title      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :bigint           not null
@@ -21,7 +21,27 @@
 require "test_helper"
 
 class ProductTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "product with negative price should be invalid" do
+    product = products(:one)
+    product.price = -1
+    assert product.invalid?
+  end
+
+  test "product has null price should be invalid" do
+    product = products(:one)
+    product.price = nil
+    assert product.invalid?
+  end
+
+  test "product has null title should be invalid" do
+    product = products(:one)
+    product.title = nil
+    assert product.invalid?
+  end
+
+  test "product does not reference to an user should be invalid" do
+    product = products(:one)
+    product.user_id = nil
+    assert product.invalid?
+  end
 end

@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(version: 2023_01_10_025549) do
   enable_extension "plpgsql"
 
   create_table "products", force: :cascade do |t|
-    t.string "title"
-    t.decimal "price"
-    t.boolean "published"
+    t.string "title", null: false
+    t.decimal "price", null: false
+    t.boolean "published", default: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

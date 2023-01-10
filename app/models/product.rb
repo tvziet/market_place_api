@@ -3,9 +3,9 @@
 # Table name: products
 #
 #  id         :bigint           not null, primary key
-#  price      :decimal(, )
-#  published  :boolean
-#  title      :string
+#  price      :decimal(, )      not null
+#  published  :boolean          default(FALSE)
+#  title      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :bigint           not null
@@ -19,5 +19,10 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Product < ApplicationRecord
+  # Validations
+  validates :price, numericality: { greater_than_or_equal_to: 0 }, presence: true
+  validates :title, presence: true
+
+  # Associations
   belongs_to :user
 end
