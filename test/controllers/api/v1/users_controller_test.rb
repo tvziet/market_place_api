@@ -18,5 +18,21 @@ class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
     get api_v1_user_url(111), as: :json
     assert_response :not_found
   end
+
+  test "should create user" do
+    assert_difference("User.count") do
+      post api_v1_users_url, params: { user: { email: "test@test.example",
+                                              password: "test" } }, as: :json
+    end
+    assert_response :created
+  end
+
+  test "should not create user with taken email" do
+    assert_no_difference("User.count") do
+      post api_v1_users_url, params: { user: { email: @user.email,
+                                              password: "test" } }, as: :json
+    end
+    assert_response :unprocessable_entity
+  end
 end
 
