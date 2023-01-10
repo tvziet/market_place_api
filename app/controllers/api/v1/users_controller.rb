@@ -38,7 +38,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def check_owner
-    head :forbidden unless @user.id = @current_user&.id
+    head :forbidden unless @user.id = current_user&.id
   end
 end
 
