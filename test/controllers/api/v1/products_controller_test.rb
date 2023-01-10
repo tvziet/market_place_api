@@ -11,7 +11,7 @@ class Api::V1::ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     json_response = JSON.parse(self.response.body)
-    assert_equal @product.title, json_response["title"]
+    assert_equal @product.title, json_response["data"]["attributes"]["title"]
   end
 
   test "should not show the product with the not exists ID" do

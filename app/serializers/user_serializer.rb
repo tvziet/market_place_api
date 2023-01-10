@@ -1,4 +1,3 @@
-class UserSerializer
-  include FastJsonapi::ObjectSerializer
+class UserSerializer < ApplicationSerializer
   attributes :email
 end
