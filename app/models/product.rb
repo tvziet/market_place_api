@@ -25,6 +25,8 @@ class Product < ApplicationRecord
 
   # Associations
   belongs_to :user
+  has_many :placements, dependent: :destroy
+  has_many :orders, through: :placements
 
   # Scopes
   scope :filter_by_title, ->(title) { where('lower(title) LIKE ?', "%#{title.downcase}%") }
