@@ -14,6 +14,7 @@ class Api::V1::OrdersController < ApplicationController
   def create
     order = current_user.orders.build(order_params)
     if order.save
+      OrderMailer.send_confirmation(order).deliver_later
       render json: OrderSerializer.new(order).serializable_hash, status: :created
     else
       render json: { errors: order.errors }, status: :unprocessable_entity
