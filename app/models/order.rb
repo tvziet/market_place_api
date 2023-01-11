@@ -17,11 +17,15 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Order < ApplicationRecord
-  # Validations
-  validates :total, numericality: { greater_than_or_equal_to: 0 }, presence: true
-
   # Associations
   belongs_to :user
   has_many :placements, dependent: :destroy
   has_many :products, through: :placements
+
+  # Callbacks
+  before_validation :set_total!
+
+  def set_total!
+    self.total = products.map(&:price).sum
+  end
 end
