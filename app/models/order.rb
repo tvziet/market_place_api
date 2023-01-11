@@ -1,24 +1,25 @@
 # == Schema Information
 #
-# Table name: products
+# Table name: orders
 #
 #  id         :bigint           not null, primary key
-#  price      :decimal(, )      not null
-#  published  :boolean          default(FALSE)
-#  title      :string           not null
+#  total      :decimal(, )      default(0.0), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :bigint           not null
 #
 # Indexes
 #
-#  index_products_on_user_id  (user_id)
+#  index_orders_on_user_id  (user_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (user_id => users.id)
 #
-class ProductSerializer < ApplicationSerializer
-  attributes :title, :price, :published
+class Order < ApplicationRecord
+  # Validations
+  validates :total, numericality: { greater_than_or_equal_to: 0 }, presence: true
+
+  # Associations
   belongs_to :user
 end
