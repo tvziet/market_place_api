@@ -10,8 +10,10 @@ class Api::V1::ProductsControllerTest < ActionDispatch::IntegrationTest
     get api_v1_product_url(@product), as: :json
     assert_response :success
 
-    json_response = JSON.parse(self.response.body)
-    assert_equal @product.title, json_response["data"]["attributes"]["title"]
+    json_response = JSON.parse(response.body, symbolize_names: true)
+    assert_equal @product.title, json_response.dig(:data, :attributes, :title)
+    assert_equal @product.user_id.to_s, json_response.dig(:data, :relationships, :user, :data, :id)
+    assert_equal @product.user.email, json_response.dig(:included, 0, :attributes, :email)
   end
 
   test "should not show the product with the not exists ID" do
