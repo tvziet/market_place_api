@@ -25,4 +25,10 @@ class Product < ApplicationRecord
 
   # Associations
   belongs_to :user
+
+  # Scopes
+  scope :filter_by_title, ->(title) { where('lower(title) LIKE ?', "%#{title.downcase}%") }
+  scope :above_or_equal_to_price, ->(price) { where('price >= ?', price) }
+  scope :below_or_equal_to_price, ->(price) { where('price <= ?', price) }
+  scope :recent, -> { order(:updated_at)}
 end

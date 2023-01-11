@@ -21,6 +21,7 @@
 require "test_helper"
 
 class ProductTest < ActiveSupport::TestCase
+  # Validations
   test "product with negative price should be invalid" do
     product = products(:one)
     product.price = -1
@@ -43,5 +44,27 @@ class ProductTest < ActiveSupport::TestCase
     product = products(:one)
     product.user_id = nil
     assert product.invalid?
+  end
+
+  # Filter products by title, price, by created_at
+  test "should filter products by title" do
+    assert_equal 2, Product.filter_by_title('tv').count
+  end
+
+  test "should filter products by title and sort them" do
+    assert_equal [products(:another_tv), products(:one)], Product.filter_by_title('tv').sort
+  end
+
+  test "should filter products by price above and sort them" do
+    assert_equal [products(:two), products(:one)], Product.above_or_equal_to_price(200).sort
+  end
+
+  test "should filter products by price lower and sort them" do
+    assert_equal [products(:another_tv)], Product.below_or_equal_to_price(200).sort
+  end
+
+  test "should sort products by most recent" do
+    products(:one).touch
+    assert_equal [products(:two), products(:another_tv), products(:one)], Product.recent.to_a
   end
 end
