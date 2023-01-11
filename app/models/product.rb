@@ -30,5 +30,13 @@ class Product < ApplicationRecord
   scope :filter_by_title, ->(title) { where('lower(title) LIKE ?', "%#{title.downcase}%") }
   scope :above_or_equal_to_price, ->(price) { where('price >= ?', price) }
   scope :below_or_equal_to_price, ->(price) { where('price <= ?', price) }
-  scope :recent, -> { order(:updated_at)}
+  scope :recent, -> { order(updated_at: :desc) }
+
+  def self.search(params = {})
+    products = params[:product_ids].present? ? Product.where(id: params[:product_ids]) : Product.all
+    products = products.filter_by_title(params[:title]) if params[:title]
+    products = products.above_or_equal_to_price(params[:min_price]) if params[:min_price]
+    products = products.below_or_equal_to_price(params[:max_price]) if params[:max_price]
+    products.recent
+  end
 end

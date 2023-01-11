@@ -64,7 +64,27 @@ class ProductTest < ActiveSupport::TestCase
   end
 
   test "should sort products by most recent" do
-    products(:one).touch
-    assert_equal [products(:two), products(:another_tv), products(:one)], Product.recent.to_a
+    products(:another_tv).touch
+    assert_equal [products(:another_tv), products(:one), products(:two)], Product.recent.to_a
+  end
+
+  # Search engine
+  test "search should not find 'videogame' as title and '100' as min price" do
+    search_hash = { title: "videogame", min_price: 100 }
+    assert Product.search(search_hash).empty?
+  end
+
+  test "search should find 'tv' with range of price" do
+    search_hash = { title: "tv", min_price: 50, max_price: 150 }
+    assert_equal [products(:another_tv)], Product.search(search_hash)
+  end
+
+  test "search should filter products by product ids" do
+    search_hash = { product_ids: [products(:one)] }
+    assert_equal [products(:one)], Product.search(search_hash)
+  end
+
+  test "should get all products when no parameters" do
+    assert_equal Product.all.to_a, Product.search({})
   end
 end
