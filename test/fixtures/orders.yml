@@ -24,3 +24,7 @@ one:
 two:
   user: two
   total: 9.99
+
+another_order:
+  user: one
+  total: 9.99

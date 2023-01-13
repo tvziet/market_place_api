@@ -5,6 +5,7 @@
 #  id         :bigint           not null, primary key
 #  price      :decimal(, )      not null
 #  published  :boolean          default(FALSE)
+#  quantity   :integer          default(0), not null
 #  title      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
