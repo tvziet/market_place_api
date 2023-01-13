@@ -3,7 +3,10 @@ class Api::V1::OrdersController < ApplicationController
   before_action :set_order, only: %i[show]
 
   def index
-    render json: OrderSerializer.new(current_user.orders).serializable_hash
+    orders = current_user.orders.page(params[:page])
+                                .per(params[:per_page])
+    options = get_links_serializer_options("api_v1_orders_path", orders)
+    render json: OrderSerializer.new(orders, options).serializable_hash
   end
 
   def show

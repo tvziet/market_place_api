@@ -17,6 +17,7 @@ class Api::V1::OrdersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     json_response = JSON.parse(response.body, symbolize_names: true)
+    assert_json_response_is_paginated json_response
     assert_equal @order.user.orders.count, json_response.dig(:data).count
   end
 

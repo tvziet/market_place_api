@@ -17,6 +17,10 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class OrderSerializer < ApplicationSerializer
+  # Associations
   belongs_to :user
   has_many :products
+
+  # Caching serializer
+  cache_options enabled: true, cache_length: 12.hours
 end

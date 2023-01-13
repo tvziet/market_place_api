@@ -20,6 +20,12 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class ProductSerializer < ApplicationSerializer
+  # Attributes
   attributes :title, :price, :published
+
+  # Associations
   belongs_to :user
+
+  # Caching serializer
+  cache_options enabled: true, cache_length: 12.hours
 end

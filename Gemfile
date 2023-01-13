@@ -8,8 +8,10 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'faker', '~> 2.19'
 gem 'fast_jsonapi', '~> 1.5'
 gem 'jwt', '~> 2.6'
+gem 'kaminari', '~> 1.2'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 6.0'
+gem 'rack-cors', '~> 1.1'
 gem 'rails', '~> 6.1.7'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
@@ -20,6 +22,7 @@ end
 
 group :development do
   gem 'annotate', '~> 3.2'
+  gem 'bullet', '~> 7.0'
   gem 'listen', '~> 3.8'
   gem 'spring'
 end

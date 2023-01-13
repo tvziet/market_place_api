@@ -13,6 +13,12 @@
 #  index_users_on_email  (email) UNIQUE
 #
 class UserSerializer < ApplicationSerializer
+  # Attributes
   attributes :email
+
+  # Associations
   has_many :products
+
+  # Caching serializer
+  cache_options enabled: true, cache_length: 12.hours
 end

@@ -21,3 +21,6 @@ When we use this gem, we generate serializer, it will generate the folder `seria
 ```ruby
 config.eager_load_paths << Rails.root.join("serializers")
 ```
+
+### How to write custom validator methods
+Read more here: [Understanding Rails Custom Validations](https://abhinavgarg1218.medium.com/rails-custom-validations-109e3e42b6fd)
