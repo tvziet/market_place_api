@@ -3,6 +3,7 @@
 # Table name: placements
 #
 #  id         :bigint           not null, primary key
+#  quantity   :integer          default(0), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  order_id   :bigint           not null

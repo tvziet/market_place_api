@@ -3,6 +3,7 @@
 # Table name: placements
 #
 #  id         :bigint           not null, primary key
+#  quantity   :integer          default(0), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  order_id   :bigint           not null
@@ -19,6 +20,14 @@
 #  fk_rails_...  (product_id => products.id)
 #
 class Placement < ApplicationRecord
+  # Associations
   belongs_to :order
   belongs_to :product, inverse_of: :placements
+
+  # Callbacks
+  after_create :decrement_product_quantity!
+
+  def decrement_product_quantity!
+    product.decrement!(:quantity, quantity)
+  end
 end

@@ -33,4 +33,9 @@ class OrderTest < ActiveSupport::TestCase
 
     assert_equal (@product1.price + @product2.price), order.total
   end
+
+  test "an order should command not too much product than available" do
+    @order.placements << Placement.new(product_id: @product1.id, quantity: (1 + @product.quantity))
+    assert_not @order.valid?
+  end
 end

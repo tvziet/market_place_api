@@ -21,8 +21,11 @@
 #
 class Product < ApplicationRecord
   # Validations
+  include ActiveModel::Validations
+
   validates :price, numericality: { greater_than_or_equal_to: 0 }, presence: true
   validates :title, presence: true
+  validates_with EnoughProductsValidator 
 
   # Associations
   belongs_to :user

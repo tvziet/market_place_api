@@ -42,5 +42,8 @@ module MarketPlaceApi
 
     # Load all files from serializers folder
     config.eager_load_paths << Rails.root.join("serializers")
+
+    # Load all files from validators folder
+    config.eager_load_paths << Rails.root.join("validators")
   end
 end
