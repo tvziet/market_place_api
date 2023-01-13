@@ -17,6 +17,10 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Order < ApplicationRecord
+  # Validations
+  include ActiveModel::Validations
+  validates_with EnoughProductsValidator 
+  
   # Associations
   belongs_to :user
   has_many :placements, dependent: :destroy
@@ -26,7 +30,7 @@ class Order < ApplicationRecord
   before_validation :set_total!
 
   def set_total!
-    self.total = products.map(&:price).sum
+    self.total = placements.map { |placement| placement.product.price * placement.quantity }.sum
   end
 
   # Add quanity for the placements
