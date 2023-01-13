@@ -21,6 +21,7 @@ end
 
 group :development do
   gem 'annotate', '~> 3.2'
+  gem 'bullet', '~> 7.0'
   gem 'listen', '~> 3.8'
   gem 'spring'
 end
