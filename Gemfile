@@ -11,7 +11,7 @@ gem 'jwt', '~> 2.7'
 gem 'kaminari', '~> 1.2'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 6.0'
-gem 'rack-cors', '~> 1.1'
+gem 'rack-cors', '~> 2.0'
 gem 'rails', '~> 6.1.7'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
