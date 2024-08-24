@@ -1,0 +1,44 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.1.4
+  Exclude:
+    - vendor/bundle/**/*
+    - "**/db/schema.rb"
+    - "**/db/**/*"
+    - "config/**/*"
+    - "lib/tasks/*"
+    - "bin/*"
+    - "test/channels/application_cable/*"
+    - "test/test_helper.rb"
+    - "config.ru"
+    - "Rakefile"
+    - "Gemfile"
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Rails/Output:
+  Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Lint/UnusedMethodArgument:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Rails/WhereRange:
+  Enabled: false
+  Exclude:
+    - "app/models/product.rb"
