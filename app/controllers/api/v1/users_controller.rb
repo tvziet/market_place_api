@@ -31,7 +31,7 @@ class Api::V1::UsersController < ApplicationController
 
   def set_user
     @user = User.find_by(id: params[:id])
-    return render json: { message: "Can not find the user" }, status: :not_found unless @user
+    return render json: { message: 'Can not find the user' }, status: :not_found unless @user
   end
 
   def user_params
@@ -39,7 +39,6 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def check_owner
-    head :forbidden unless @user.id = current_user&.id
+    head :forbidden unless @user.id == current_user&.id
   end
 end
-

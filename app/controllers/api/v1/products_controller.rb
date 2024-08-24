@@ -8,7 +8,7 @@ class Api::V1::ProductsController < ApplicationController
                       .page(params[:page])
                       .per(params[:per_page])
                       .search(params)
-    options = get_links_serializer_options("api_v1_products_path", products)
+    options = get_links_serializer_options('api_v1_products_path', products)
     options[:include] = [:user]
     render json: ProductSerializer.new(products, options).serializable_hash
   end
@@ -44,7 +44,7 @@ class Api::V1::ProductsController < ApplicationController
 
   def set_product
     @product = Product.find_by(id: params[:id])
-    return render json: { message: "Can not find the product" }, status: :not_found unless @product
+    return render json: { message: 'Can not find the product' }, status: :not_found unless @product
   end
 
   def product_params
@@ -55,4 +55,3 @@ class Api::V1::ProductsController < ApplicationController
     head :forbidden if @product.user_id != current_user.id
   end
 end
-

@@ -13,11 +13,10 @@ class Api::V1::TokensController < ApplicationController
 
   def set_user
     @user = User.find_by(email: user_params[:email])
-    return render json: { message: "Can not find the user" }, status: :not_found unless @user
+    return render json: { message: 'Can not find the user' }, status: :not_found unless @user
   end
 
   def user_params
     params.require(:user).permit(:email, :password)
   end
 end
-
