@@ -1,0 +1,51 @@
+name: Tests
+
+on:
+  pull_request:
+    branches:
+      - "*"
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+        ports: ["5432:5432"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1.4
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get install -y -qq libvips
+
+      - name: Brakeman check
+        run: |
+          bundle exec brakeman -q -w2
+
+      - name: Rubocop check
+        run: |
+          bundle exec rubocop
+
+      - name: Run tests
+        env:
+          DATABASE_URL: postgres://postgres:password@localhost:5432/market_place_api_test
+          RAILS_ENV: test
+          PG_USER: postgres
+        run: |
+          bin/rails test:prepare
+          bin/rails db:test:prepare
+          bin/rails test
