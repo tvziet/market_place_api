@@ -33,6 +33,6 @@ class Api::V1::OrdersController < ApplicationController
 
   def set_order
     @order = current_user.orders.find_by(id: params[:id])
-    render json: { message: 'Can not find the order' }, status: :not_found unless @order
+    render json: { message: I18n.t('api.v1.orders.not_found') }, status: :not_found unless @order
   end
 end

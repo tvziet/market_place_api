@@ -44,7 +44,7 @@ class Api::V1::ProductsController < ApplicationController
 
   def set_product
     @product = Product.find_by(id: params[:id])
-    render json: { message: 'Can not find the product' }, status: :not_found unless @product
+    render json: { message: I18n.t('api.v1.products.not_found') }, status: :not_found unless @product
   end
 
   def product_params

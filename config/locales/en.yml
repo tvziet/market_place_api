@@ -2,3 +2,11 @@ en:
   mailer:
     order:
       confirmation: Order Confirmation
+  api:
+    v1:
+      orders:
+        not_found: Can not find the order
+      products:
+        not_found: Can not find the product
+      users:
+        not_found: Can not find the user
