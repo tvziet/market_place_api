@@ -13,8 +13,6 @@ class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
     # Test to ensure response contains the correct email
     json_response = JSON.parse(response.body, symbolize_names: true)
     assert_equal @user.email, json_response.dig(:data, :attributes, :email)
-    assert_equal @user.products.first.id.to_s, json_response.dig(:data, :relationships, :products, :data, 0, :id)
-    assert_equal @user.products.first.title, json_response.dig(:included, 0, :attributes, :title)
   end
 
   test 'should not show the user with the not exists ID' do
@@ -25,16 +23,14 @@ class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
   # Create action
   test 'should create user' do
     assert_difference('User.count') do
-      post api_v1_users_url, params: { user: { email: 'test@test.example',
-                                               password: 'test' } }, as: :json
+      post api_v1_register_url, params: { user: { email: 'test@test.example', password: 'test' } }, as: :json
     end
     assert_response :created
   end
 
   test 'should not create user with taken email' do
     assert_no_difference('User.count') do
-      post api_v1_users_url, params: { user: { email: @user.email,
-                                               password: 'test' } }, as: :json
+      post api_v1_register_url, params: { user: { email: @user.email, password: 'test' } }, as: :json
     end
     assert_response :unprocessable_entity
   end

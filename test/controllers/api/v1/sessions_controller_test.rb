@@ -1,12 +1,12 @@
 require 'test_helper'
 
-class Api::V1::TokensControllerTest < ActionDispatch::IntegrationTest
+class Api::V1::SessionsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:one)
   end
 
   test 'should get JWT token' do
-    post api_v1_tokens_url, params: { user: { email: @user.email, password: 'p@ssw0rd' } }, as: :json
+    post api_v1_login_url, params: { user: { email: @user.email, password: 'p@ssw0rd' } }, as: :json
     assert_response :success
 
     json_response = response.parsed_body
@@ -14,7 +14,7 @@ class Api::V1::TokensControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should not get JWT token' do
-    post api_v1_tokens_url, params: { user: { email: @user.email, password: 'not_p@ssw0rd' } }, as: :json
+    post api_v1_login_url, params: { user: { email: @user.email, password: 'not_p@ssw0rd' } }, as: :json
     assert_response :unauthorized
   end
 end

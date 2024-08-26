@@ -6,6 +6,8 @@ en:
     v1:
       orders:
         not_found: Can not find the order
+        invalid_total: Total must be a number
+        invalid_products: Can not create the order, the products are not found
       products:
         not_found: Can not find the product
       users:
