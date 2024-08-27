@@ -8,42 +8,42 @@ class Api::V1::ProductsController < ApplicationController
                       .page(params[:page])
                       .per(params[:per_page])
                       .search(params)
-    options = get_links_serializer_options('api_v1_products_path', products)
-    options[:include] = [:user]
-    render json: ProductSerializer.new(products, options).serializable_hash
+    pagination = get_links_serializer_options('api_v1_products_path', products)
+    pagination[:include] = [:user]
+    options = { serializer: ProductSerializer, pagination: }
+    success_response(products, options)
   end
 
   def show
-    render json: ProductSerializer.new(@product).serializable_hash
+    success_response(set_product)
   end
 
   def create
-    @product = current_user.products.build(product_params)
-    if @product.save
-      render json: ProductSerializer.new(@product).serializable_hash, status: :created
-    else
-      render json: { errors: @product.errors }, status: :unprocessable_entity
-    end
+    product = current_user.products.build(product_params)
+    return errors_response(product.errors) unless product.save
+
+    options = { status: :created }
+    success_response(product, options)
   end
 
   def update
-    if @product.update(product_params)
-      render json: ProductSerializer.new(@product).serializable_hash, status: :ok
-    else
-      render json: { errors: @product.errors }, status: :unprocessable_entity
-    end
+    return success_response(set_product) if set_product.update(product_params)
+
+    errors_response(set_product.errors)
   end
 
   def destroy
-    @product.destroy
+    set_product.destroy
     head :no_content
   end
 
   private
 
   def set_product
-    @product = Product.find_by(id: params[:id])
-    render json: { message: I18n.t('api.v1.products.not_found') }, status: :not_found unless @product
+    product = Product.find_by(id: params[:id])
+    render json: { message: I18n.t('api.v1.products.not_found') }, status: :not_found unless product
+
+    product
   end
 
   def product_params
@@ -51,6 +51,6 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def check_owner
-    head :forbidden if @product.user_id != current_user.id
+    head :forbidden if set_product.user_id != current_user.id
   end
 end

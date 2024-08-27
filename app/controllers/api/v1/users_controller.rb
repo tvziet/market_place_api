@@ -3,34 +3,36 @@ class Api::V1::UsersController < ApplicationController
   before_action :check_owner, only: %i[update destroy]
 
   def show
-    render json: UserSerializer.new(@user).serializable_hash
+    success_response(set_user)
   end
 
   def create
-    @user = User.new(user_params)
-    return render json: { errors: @user.errors }, status: :unprocessable_entity unless @user.save
+    user = User.new(user_params)
+    return errors_response(user.errors) unless user.save
 
-    render json: UserSerializer.new(@user).serializable_hash, status: :created
+    options = { status: :created }
+
+    success_response(user, options)
   end
 
   def update
-    if @user.update(user_params)
-      render json: UserSerializer.new(@user).serializable_hash, status: :ok
-    else
-      render json: { errors: @user.errors }, status: :unprocessable_entity
-    end
+    return success_response(set_user) if set_user.update(user_params)
+
+    errors_response(set_user.errors)
   end
 
   def destroy
-    @user.destroy
+    set_user.destroy
     head :no_content
   end
 
   private
 
   def set_user
-    @user = User.find_by(id: params[:id])
-    render json: { message: I18n.t('api.v1.users.not_found') }, status: :not_found unless @user
+    user = User.find_by(id: params[:id])
+    return render json: { message: I18n.t('api.v1.users.not_found') }, status: :not_found unless user
+
+    user
   end
 
   def user_params
@@ -38,6 +40,6 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def check_owner
-    head :forbidden unless @user.id == current_user&.id
+    head :forbidden unless set_user.id == current_user&.id
   end
 end

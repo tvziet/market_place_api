@@ -7,22 +7,22 @@ class Api::V1::OrdersController < ApplicationController
     orders = current_user.orders
                          .page(params[:page])
                          .per(params[:per_page])
-    options = get_links_serializer_options('api_v1_orders_path', orders)
-    render json: OrderSerializer.new(orders, options).serializable_hash
+    pagination = get_links_serializer_options('api_v1_orders_path', orders)
+    options = { serializer: OrderSerializer, pagination: }
+    success_response(orders, options)
   end
 
   def show
-    render json: OrderSerializer.new(@order).serializable_hash
+    success_response(set_order)
   end
 
   def create
     order = current_user.orders.build(order_params)
-    if order.save
-      OrderMailer.send_confirmation(order).deliver_later
-      render json: OrderSerializer.new(order).serializable_hash, status: :created
-    else
-      render json: { errors: order.errors }, status: :unprocessable_entity
-    end
+    return errors_response(order.errors) unless order.save
+
+    OrderMailer.send_confirmation(order).deliver_later
+    options = { status: :created }
+    success_response(order, options)
   end
 
   private
@@ -32,8 +32,10 @@ class Api::V1::OrdersController < ApplicationController
   end
 
   def set_order
-    @order = current_user.orders.find_by(id: params[:id])
-    render json: { message: I18n.t('api.v1.orders.not_found') }, status: :not_found unless @order
+    order = current_user.orders.find_by(id: params[:id])
+    return render json: { message: I18n.t('api.v1.orders.not_found') }, status: :not_found unless order
+
+    order
   end
 
   def check_order_params
