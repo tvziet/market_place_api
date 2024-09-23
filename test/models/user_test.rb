@@ -12,28 +12,28 @@
 #
 #  index_users_on_email  (email) UNIQUE
 #
-require "test_helper"
+require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test "user with a valid email should be valid" do
-    user = User.new(email: "test@test.example",
-                    password_digest: "test")
+  test 'user with a valid email should be valid' do
+    user = User.new(email: 'test@test.example',
+                    password_digest: 'test')
     assert user.valid?
   end
 
-  test "user with a invalid email should be invalid" do
-    user = User.new(email: "test$test.example")
+  test 'user with a invalid email should be invalid' do
+    user = User.new(email: 'test$test.example')
     assert user.invalid?
   end
 
-  test "user with taken email should be invalid" do
+  test 'user with taken email should be invalid' do
     user = users(:one)
-    other_user = User.new(email: user.email, password_digest: "other_user_test")
+    other_user = User.new(email: user.email, password_digest: 'other_user_test')
     assert other_user.invalid?
   end
 
-  test "destroy user should destroy linked product" do
-    assert_difference("Product.count", -1) do
+  test 'destroy user should destroy linked product' do
+    assert_difference('Product.count', -1) do
       users(:one).destroy
     end
   end
