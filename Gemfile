@@ -3,13 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-gem 'bcrypt', '~> 3.1', '>= 3.1.18'
+gem 'bcrypt', '~> 3.1'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'faker', '~> 2.19'
 gem 'fast_jsonapi', '~> 1.5'
 gem 'jwt', '~> 2.7'
 gem 'kaminari', '~> 1.2'
-gem 'pg', '~> 1.4'
+gem 'pg', '~> 1.5'
 gem 'puma', '~> 6.4'
 gem 'rack-cors', '~> 2.0'
 gem 'rails', '~> 6.1.7'
