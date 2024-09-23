@@ -10,7 +10,7 @@ gem 'fast_jsonapi', '~> 1.5'
 gem 'jwt', '~> 2.7'
 gem 'kaminari', '~> 1.2'
 gem 'pg', '~> 1.5'
-gem 'puma', '~> 6.2'
+gem 'puma', '~> 6.4'
 gem 'rack-cors', '~> 2.0'
 gem 'rails', '~> 6.1.7'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
