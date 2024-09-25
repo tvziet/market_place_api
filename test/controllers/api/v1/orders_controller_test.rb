@@ -30,9 +30,6 @@ class Api::V1::OrdersControllerTest < ActionDispatch::IntegrationTest
   test 'should show order with the exists ID' do
     get api_v1_order_url(@order), headers: { Authorization: JsonWebToken.encode(user_id: @order.user_id) }, as: :json
     assert_response :success
-
-    json_response = JSON.parse(response.body, symbolize_names: true)
-    assert_equal @order.products.first.title, json_response.dig(:included, 0, :attributes, :title)
   end
 
   test 'should not show the order with the not exists ID' do

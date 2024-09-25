@@ -1,9 +1,9 @@
-class Api::V1::TokensController < ApplicationController
+class Api::V1::SessionsController < ApplicationController
   before_action :set_user
 
   def create
     if @user.authenticate(user_params[:password])
-      render json: { token: JsonWebToken.encode(user_id: @user.id), email: @user.email }
+      render json: { token: JsonWebToken.encode(user_id: @user.id) }
     else
       head :unauthorized
     end

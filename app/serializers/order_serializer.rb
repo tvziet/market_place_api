@@ -21,6 +21,9 @@ class OrderSerializer < ApplicationSerializer
   belongs_to :user
   has_many :products
 
+  # Attributes
+  attributes :total
+
   # Caching serializer
   cache_options enabled: true, cache_length: 12.hours
 end
