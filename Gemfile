@@ -29,5 +29,5 @@ group :development do
   gem 'bullet', '~> 7.0'
   gem 'listen', '~> 3.8'
   gem 'spring'
-  gem 'brakeman', '~> 5.4'
+  gem 'brakeman', '~> 6.2'
 end
