@@ -5,7 +5,7 @@ ruby '3.1.4'
 
 gem 'bcrypt', '~> 3.1'
 gem 'bootsnap', '>= 1.4.4', require: false
-gem 'faker', '~> 2.19'
+gem 'faker', '~> 3.4'
 gem 'fast_jsonapi', '~> 1.5'
 gem 'jwt', '~> 2.7'
 gem 'kaminari', '~> 1.2'
@@ -29,5 +29,5 @@ group :development do
   gem 'bullet', '~> 7.0'
   gem 'listen', '~> 3.8'
   gem 'spring'
-  gem 'brakeman', '~> 5.4'
+  gem 'brakeman', '~> 6.2'
 end
