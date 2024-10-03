@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id              :bigint           not null, primary key
+#  avatar          :string
 #  email           :string           not null
 #  password_digest :string           not null
 #  created_at      :datetime         not null
@@ -15,6 +16,8 @@
 class UserSerializer < ApplicationSerializer
   # Attributes
   attributes :email
+
+  attribute :avatar_url
 
   # Associations
   has_many :products

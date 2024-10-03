@@ -36,7 +36,14 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password)
+    permitted_params = %i[email password]
+
+    if action_name == 'create'
+      params.require(:user).permit(*permitted_params)
+    else
+      permitted_params << :avatar
+      params.permit(*permitted_params)
+    end
   end
 
   def check_owner
