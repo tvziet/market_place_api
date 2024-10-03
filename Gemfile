@@ -31,3 +31,7 @@ group :development do
   gem 'spring'
   gem 'brakeman', '~> 6.2'
 end
+
+gem "aws-sdk-s3", "~> 1.166"
+
+gem "yard", "~> 0.9.37"
