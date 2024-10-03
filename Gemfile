@@ -20,7 +20,7 @@ gem 'rails-i18n', '~> 7.0'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'dotenv-rails', '~> 2.8', '>= 2.8.1'
+  gem 'dotenv-rails', '~> 3.1'
   gem 'rubocop-rails', '~> 2.19'
 end
 
