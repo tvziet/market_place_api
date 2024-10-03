@@ -96,7 +96,7 @@ GEM
       railties (>= 3.2)
     drb (2.2.1)
     erubi (1.13.0)
-    faker (2.23.0)
+    faker (3.4.2)
       i18n (>= 1.8.11, < 2)
     fast_jsonapi (1.5)
       activesupport (>= 4.2)
@@ -292,7 +292,7 @@ DEPENDENCIES
   bullet (~> 7.0)
   byebug
   dotenv-rails (~> 2.8, >= 2.8.1)
-  faker (~> 2.19)
+  faker (~> 3.4)
   fast_jsonapi (~> 1.5)
   jwt (~> 2.7)
   kaminari (~> 1.2)
