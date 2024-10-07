@@ -137,7 +137,7 @@ GEM
       reline (>= 0.4.2)
     jmespath (1.6.2)
     json (2.7.2)
-    jwt (2.9.1)
+    jwt (2.9.3)
       base64
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
@@ -314,7 +314,7 @@ DEPENDENCIES
   dotenv-rails (~> 3.1)
   faker (~> 3.4)
   fast_jsonapi (~> 1.5)
-  jwt (~> 2.7)
+  jwt (~> 2.9)
   kaminari (~> 1.2)
   listen (~> 3.8)
   pg (~> 1.5)

@@ -7,7 +7,7 @@ gem 'bcrypt', '~> 3.1'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'faker', '~> 3.4'
 gem 'fast_jsonapi', '~> 1.5'
-gem 'jwt', '~> 2.7'
+gem 'jwt', '~> 2.9'
 gem 'kaminari', '~> 1.2'
 gem 'pg', '~> 1.5'
 gem 'puma', '~> 6.4'
