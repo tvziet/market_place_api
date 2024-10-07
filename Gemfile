@@ -32,6 +32,6 @@ group :development do
   gem 'brakeman', '~> 6.2'
 end
 
-gem "aws-sdk-s3", "~> 1.166"
+gem "aws-sdk-s3", "~> 1.167"
 
 gem "yard", "~> 0.9.37"
