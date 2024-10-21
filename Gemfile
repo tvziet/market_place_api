@@ -5,7 +5,7 @@ ruby '3.1.4'
 
 gem 'bcrypt', '~> 3.1'
 gem 'bootsnap', '>= 1.4.4', require: false
-gem 'faker', '~> 3.4'
+gem 'faker', '~> 3.5'
 gem 'fast_jsonapi', '~> 1.5'
 gem 'jwt', '~> 2.7'
 gem 'kaminari', '~> 1.2'
