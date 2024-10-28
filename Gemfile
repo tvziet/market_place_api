@@ -12,7 +12,7 @@ gem 'kaminari', '~> 1.2'
 gem 'pg', '~> 1.5'
 gem 'puma', '~> 6.4'
 gem 'rack-cors', '~> 2.0'
-gem 'rails', '~> 7.2', '>= 7.2.1'
+gem 'rails', '~> 7.2'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Internationalize
