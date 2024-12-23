@@ -156,7 +156,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UserResponse"
+                $ref: "#/components/schemas/ProductResponse"
         "422":
           description: Failed
           content:
