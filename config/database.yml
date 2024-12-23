@@ -17,6 +17,4 @@ test:
 
 production:
   <<: *default
-  database: market_place_api_production
-  username: market_place_api
-  password: <%= ENV['MARKET_PLACE_API_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
