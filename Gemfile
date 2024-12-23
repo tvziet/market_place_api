@@ -18,6 +18,10 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # Internationalize
 gem 'rails-i18n', '~> 7.0'
 
+gem 'aws-sdk-s3', '~> 1.166'
+
+gem 'yard', '~> 0.9.37'
+
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'dotenv-rails', '~> 3.1'
@@ -31,7 +35,3 @@ group :development do
   gem 'spring'
   gem 'brakeman', '~> 6.2'
 end
-
-gem "aws-sdk-s3", "~> 1.166"
-
-gem "yard", "~> 0.9.37"
