@@ -25,7 +25,7 @@ gem 'yard', '~> 0.9.37'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'dotenv-rails', '~> 3.1'
-  gem 'rubocop-rails', '~> 2.19'
+  gem 'rubocop-rails', '~> 2.28'
 end
 
 group :development do
